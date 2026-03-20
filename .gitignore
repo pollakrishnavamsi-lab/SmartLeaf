@@ -4,5 +4,18 @@ __pycache__/
 *.h5
 *.keras
 *.tflite
-history.json
+*.log
+*.exe
+
+# Dataset (VERY IMPORTANT)
+PlantVillage/
+
+# Uploads / temp files
 static/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Notebook checkpoints
+.ipynb_checkpoints/
