@@ -1,0 +1,82 @@
+{
+  "Apple___Apple_scab": {
+    "en": {
+      "description": "Fungal infection causing olive-green spots. Often linked to low Calcium levels which weakens cell walls.",
+      "prevention": "Apply Lime to soil to boost Calcium; use sulfur-based fungicides; remove fallen leaves."
+    },
+    "hi": {
+      "description": "जैतून-हरे धब्बे पैदा करने वाला कवक संक्रमण। अक्सर कम कैल्शियम के स्तर से जुड़ा होता है।",
+      "prevention": "कैल्शियम बढ़ाने के लिए मिट्टी में चूना लगाएं; कवकनाशी का उपयोग करें।"
+    }
+  },
+  "Apple___Black_rot": {
+    "en": {
+      "description": "Causes frogeye leaf spots. Can be worsened by Boron deficiency which affects fruit set.",
+      "prevention": "Prune cankers during winter; apply Boron spray if soil tests low; maintain tree vigor."
+    },
+    "hi": {
+      "description": "मेंढक की आंख जैसे धब्बे पैदा करता है। बोरॉन की कमी से स्थिति और खराब हो सकती है।",
+      "prevention": "सर्दियों में छँटाई करें; बोरॉन स्प्रे का उपयोग करें।"
+    }
+  },
+  "Corn_(maize)___Common_rust_": {
+    "en": {
+      "description": "Reddish-brown pustules. Excess Nitrogen can sometimes make plants more susceptible to rust.",
+      "prevention": "Use Phosphorus-rich fertilizers to balance Nitrogen; plant resistant hybrids; rotate crops."
+    },
+    "hi": {
+      "description": "लाल-भूरे रंग के दाने। अत्यधिक नाइट्रोजन पौधों को रस्ट के प्रति संवेदनशील बना सकती है।",
+      "prevention": "नाइट्रोजन को संतुलित करने के लिए फास्फोरस युक्त उर्वरकों का उपयोग करें।"
+    }
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "en": {
+      "description": "Cigar-shaped lesions. Often associated with Potassium (K) deficiency which reduces stress tolerance.",
+      "prevention": "Increase Potassium (MOP/SOP) application; manage crop residue; use foliar fungicides."
+    },
+    "hi": {
+      "description": "सिगार के आकार के घाव। अक्सर पोटेशियम (K) की कमी से जुड़ा होता है।",
+      "prevention": "पोटेशियम उर्वरक बढ़ाएं; फसल अवशेषों का प्रबंधन करें।"
+    }
+  },
+  "Potato___Early_blight": {
+    "en": {
+      "description": "Target-like spots. Strongly linked to Nitrogen and Magnesium deficiency in older leaves.",
+      "prevention": "Apply balanced N-P-K fertilizer; use Magnesium Sulfate (Epsom salt) if leaves turn yellow between veins."
+    },
+    "hi": {
+      "description": "लक्ष्य जैसे धब्बे। पुराने पत्तों में नाइट्रोजन और मैग्नीशियम की कमी से जुड़ा है।",
+      "prevention": "संतुलित N-P-K उर्वरक लगाएं; मैग्नीशियम सल्फेट का उपयोग करें।"
+    }
+  },
+  "Tomato___Bacterial_spot": {
+    "en": {
+      "description": "Small dark greasy spots. Often indicates a lack of Copper and Zinc which help plant immunity.",
+      "prevention": "Use Copper-based bactericides; ensure proper Zinc levels in soil; avoid overhead irrigation."
+    },
+    "hi": {
+      "description": "छोटे गहरे तैलीय धब्बे। कॉपर और जिंक की कमी को दर्शाता है।",
+      "prevention": "कॉपर-आधारित जीवाणुनाशकों का उपयोग करें; जिंक का स्तर सुनिश्चित करें।"
+    }
+  },
+  "Tomato___Late_blight": {
+    "en": {
+      "description": "Water-soaked patches. High moisture and Phosphorus deficiency can accelerate spread.",
+      "prevention": "Apply Phosphorus-rich fertilizer; improve air circulation; use Chlorothalonil or Copper sprays."
+    },
+    "hi": {
+      "description": "पानी से लथपथ धब्बे। फास्फोरस की कमी प्रसार को तेज कर सकती है।",
+      "prevention": "फास्फोरस युक्त उर्वरक लगाएं; हवा का संचार सुधारें।"
+    }
+  },
+  "Grape___Black_rot": {
+    "en": {
+      "description": "Circular brown spots on leaves. Iron deficiency can weaken vines making them more prone.",
+      "prevention": "Foliar Iron chelate spray; remove mummified berries; apply Mancozeb fungicides."
+    },
+    "hi": {
+      "description": "पत्तियों पर गोलाकार भूरे धब्बे। आयरन की कमी बेलों को कमजोर कर सकती है।",
+      "prevention": "आयरन स्प्रे का उपयोग करें; सड़े हुए अंगूरों को हटा दें।"
+    }
+  }
+}

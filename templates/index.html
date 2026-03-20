@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeafNutri AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* YOUR PROVIDED STYLES */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+            padding-bottom: 100px;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #000;
+        }
+
+        .hero { padding: 40px 20px; text-align: center; max-width: 900px; margin: 20px auto; }
+        .hero h1 { font-size: 36px; font-weight: 700; margin: 0; }
+
+        .section { max-width: 1100px; margin: 20px auto; padding: 20px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .card { padding: 20px; text-align: center; }
+
+        .analysis-panel { max-width: 500px; margin: 30px auto; padding: 30px; }
+
+        form { display: flex; flex-direction: column; gap: 15px; }
+
+        input, select {
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.4);
+            font-family: inherit;
+        }
+
+        button {
+            padding: 16px;
+            border-radius: 30px;
+            border: none;
+            background: #FF385C;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 56, 92, 0.3);
+        }
+
+        /* RESULT DASHBOARD STYLES */
+        .result-img { width: 100%; border-radius: 12px; margin-bottom: 15px; }
+        .progress-bar { background: rgba(0,0,0,0.1); border-radius: 20px; height: 24px; margin: 15px 0; }
+        .progress-fill { 
+            height: 100%; background: #FF385C; border-radius: 20px;
+            text-align: center; color: white; line-height: 24px; font-size: 12px; 
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; 
+            background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-around; padding: 15px 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        .nav-item { text-decoration: none; color: #636e72; font-size: 12px; text-align: center; }
+        .nav-item i { display: block; font-size: 20px; margin-bottom: 2px; }
+        .active { color: #FF385C; }
+    </style>
+</head>
+<body>
+
+<div class="hero glass">
+    <h1>LeafNutri AI</h1>
+    <p>Smart Plant Nutrition Detection</p>
+</div>
+
+<div class="analysis-panel glass">
+    {% if not result and not error_message %}
+        <h2>Analysis Center</h2>
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            <select name="language">
+                <option value="en">English</option>
+                <option value="hi">Hindi (हिंदी)</option>
+            </select>
+            
+            <input type="file" name="file" accept="image/*" capture="environment" required id="fileInput">
+            
+            <button type="submit" id="submitBtn">Analyze Health</button>
+        </form>
+    {% else %}
+        {% if error_message %}
+            <h2 style="color: #FF385C;">Analysis Failed</h2>
+            <p>{{ error_message }}</p>
+        {% else %}
+            <img src="{{ url_for('static', filename='uploads/' + uploaded_image_name) }}" class="result-img">
+            <h2 style="margin:0;">{{ result.replace('_', ' ') }}</h2>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ confidence }}%;">AI Confidence: {{ confidence }}%</div>
+            </div>
+
+            <div style="text-align: left; margin-top: 20px;">
+                <strong><i class="fas fa-info-circle"></i> Insight:</strong>
+                <p>{{ description }}</p>
+                <strong><i class="fas fa-medkit"></i> Action Plan:</strong>
+                <p>{{ prevention }}</p>
+            </div>
+
+            {% if audio_file %}
+            <audio controls autoplay style="width: 100%; margin-top: 10px;">
+                <source src="{{ url_for('static', filename='uploads/' + audio_file) }}" type="audio/mpeg">
+            </audio>
+            {% endif %}
+        {% endif %}
+        
+        <a href="/reset" style="text-decoration: none;"><button style="background: #333; margin-top: 20px; width: 100%;">New Scan</button></a>
+    {% endif %}
+</div>
+
+<div class="section">
+    <div class="card-grid">
+        <div class="card glass">
+            <h3>Nitrogen (N)</h3>
+            <p>Yellowing of older leaves.</p>
+        </div>
+        <div class="card glass">
+            <h3>Iron (Fe)</h3>
+            <p>Young leaf chlorosis.</p>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-nav">
+    <a href="/" class="nav-item active"><i class="fas fa-home"></i>Home</a>
+    <a href="/history" class="nav-item"><i class="fas fa-history"></i>History</a>
+    <a href="#" class="nav-item"><i class="fas fa-seedling"></i>Plants</a>
+</div>
+
+<script>
+    // Show loading state on button
+    document.getElementById('uploadForm').onsubmit = function() {
+        document.getElementById('submitBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    };
+</script>
+
+</body>
+</html>

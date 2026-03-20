@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan History | LeafNutri AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+            padding-bottom: 100px;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .header-box {
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-box h1 { margin: 0; font-size: 28px; }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .history-card {
+            padding: 15px;
+            text-align: left;
+            transition: 0.3s ease;
+        }
+
+        .history-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .scan-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .result-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #FF385C;
+            margin: 0;
+        }
+
+        .meta-data {
+            font-size: 0.85rem;
+            color: #333;
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; 
+            background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-around; padding: 15px 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .nav-item { text-decoration: none; color: #636e72; font-size: 12px; text-align: center; }
+        .nav-item i { display: block; font-size: 20px; margin-bottom: 2px; }
+        .active { color: #FF385C; }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-box glass">
+        <h1><i class="fas fa-history"></i> Scan History</h1>
+        <p>Review your past plant nutritional reports</p>
+    </div>
+
+    <div class="card-grid">
+        {% for scan in scans %}
+        <div class="history-card glass">
+            {% if scan.image %}
+                <img src="{{ url_for('static', filename='uploads/' + scan.image) }}" class="scan-img">
+            {% else %}
+                <div class="scan-img" style="display:flex; align-items:center; justify-content:center;">
+                    <i class="fas fa-image" style="font-size: 3rem; opacity:0.3;"></i>
+                </div>
+            {% endif %}
+
+            <p class="result-label">{{ scan.get('result', 'Unknown Analysis') }}</p>
+            
+            <div class="meta-data">
+                <span><i class="far fa-calendar-alt"></i> {{ scan.get('date', 'N/A') }}</span>
+                <span style="font-weight: bold;">{{ scan.get('confidence', 0) }}%</span>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-state glass" style="grid-column: 1 / -1;">
+            <i class="fas fa-seedling" style="font-size: 3rem; color: #FF385C; margin-bottom: 10px;"></i>
+            <p>No history found yet. Start scanning to see reports!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="bottom-nav">
+    <a href="/" class="nav-item"><i class="fas fa-home"></i>Home</a>
+    <a href="/history" class="nav-item active"><i class="fas fa-history"></i>History</a>
+    <a href="#" class="nav-item"><i class="fas fa-seedling"></i>Plants</a>
+</div>
+
+</body>
+</html>
